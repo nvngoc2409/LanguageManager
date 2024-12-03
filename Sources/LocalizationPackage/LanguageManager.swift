@@ -1,32 +1,31 @@
-//
-//  File.swift
-//  
-//
-//  Created by MrHoa on 3/12/24.
-//
-
 import Foundation
+import Combine
 
 public class LanguageManager: ObservableObject {
-    @Published public var currentLanguage: String
+    // Singleton instance
+    public static let shared = LanguageManager()
 
-    public init() {
-        self.currentLanguage = UserDefaults.standard.stringArray(forKey: "AppleLanguages")?.first ?? "en"
-        setLanguage(self.currentLanguage)
+    @Published var languageData: [String: String] = [:]
+
+    private init() {
+        // Load ngôn ngữ mặc định khi ứng dụng được khởi chạy
+        let preferredLanguage = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
+        loadLanguage(preferredLanguage)
     }
 
-    public func setLanguage(_ language: String) {
-        self.currentLanguage = language
-
-        // Lưu vào UserDefaults
-        UserDefaults.standard.set([language], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-
-        // Cập nhật bundle ngôn ngữ
-        Bundle.setLanguage(language)
+    // Hàm để tải ngôn ngữ
+    public func loadLanguage(_ language: String) {
+        let fileName = language == "th" ? "th.json" : "en.json"
+        if let url = Bundle.main.url(forResource: fileName, withExtension: ""),
+           let data = try? Data(contentsOf: url) {
+            if let json = try? JSONDecoder().decode([String: String].self, from: data) {
+                languageData = json
+            }
+        }
     }
 
-  public func localizedString(forKey key: String) -> String {
-    return Bundle.main.localizedString(forKey: key)
-  }
+    // Hàm lấy chuỗi theo key
+    public func localizedString(forKey key: String) -> String {
+        return languageData[key] ?? key
+    }
 }
