@@ -1,7 +1,6 @@
 {
   "Welcome to HitPay": "Welcome to HitPay",
   "You are about to log in to HitPay": "You are about to log in to HitPay",
-  "Edit": "Edit",
   "Enter HitPay password": "Enter HitPay password",
   "Forgot password?": "Forgot password?",
   "Continue to log in": "Continue to log in",
@@ -13,7 +12,6 @@
   "Please enter your email": "Please enter your email",
   "Email format isn't correct": "Email format isn't correct",
   "Continue": "Continue",
-  "Oops, \(email) is not registered": "Oops, \(email) is not registered",
   "Would you like to create a new account?": "Would you like to create a new account?",
   "Create a new account": "Create a new account",
   "I already have an account": "I already have an account",
@@ -36,4 +34,3 @@
   "Last name can not be empty.": "Last name can not be empty.",
   "Continue to sign up": "Continue to sign up"
 }
-
