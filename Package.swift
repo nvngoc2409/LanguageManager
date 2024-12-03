@@ -4,19 +4,19 @@
 import PackageDescription
 
 let package = Package(
-  name: "LocalizationPackage",
+  name: "LanguageManager",
   platforms: [
     .iOS(.v14)
   ],
   products: [
-    .library(name: "LocalizationPackage", targets: ["LocalizationPackage"]),
+    .library(name: "LanguageManager", targets: ["LanguageManager"]),
   ],
   targets: [
     .target(
-      name: "LocalizationPackage",
+      name: "LanguageManager",
       resources: [
-        .process("en.json"),
-        .process("th.json")
+        .process("Resources/en.json"),
+        .process("Resources/th.json")
       ]
     ),
   ]

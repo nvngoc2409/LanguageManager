@@ -1,1 +1,1 @@
-# LocalizationPackage
+# LanguageManager
