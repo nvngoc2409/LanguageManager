@@ -14,9 +14,7 @@ let package = Package(
   targets: [
     .target(
       name: "LocalizationPackage",
-      resources: [
-        .process("Resources")
-      ]
+      path: "Sources"
     ),
   ]
 )
