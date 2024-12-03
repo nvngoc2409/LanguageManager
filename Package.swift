@@ -13,7 +13,11 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "LocalizationPackage"
+      name: "LocalizationPackage",
+      resources: [
+        .process("en.json"),
+        .process("th.json")
+      ]
     ),
   ]
 )

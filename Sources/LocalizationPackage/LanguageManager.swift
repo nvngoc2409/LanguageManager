@@ -13,7 +13,7 @@ public class LanguageManager: ObservableObject {
 
     public func loadLanguage(_ language: String) {
         let fileName = language == "th" ? "th.json" : "en.json"
-        if let url = Bundle.main.url(forResource: fileName, withExtension: ""),
+        if let url = Bundle.module.url(forResource: fileName, withExtension: ""),
            let data = try? Data(contentsOf: url) {
             if let json = try? JSONDecoder().decode([String: String].self, from: data) {
                 languageData = json
