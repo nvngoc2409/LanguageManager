@@ -7,7 +7,7 @@ public class LanguageManager: ObservableObject {
     @Published var languageData: [String: String] = [:]
 
     private init() {
-        let preferredLanguage = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
+        let preferredLanguage = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en_US"
         loadLanguage(preferredLanguage)
     }
 
