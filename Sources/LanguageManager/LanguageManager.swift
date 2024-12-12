@@ -66,7 +66,6 @@ public class LanguageManager: ObservableObject {
       let data = try Data(contentsOf: URL(fileURLWithPath: fullPath))
       if let json = try? JSONDecoder().decode([String: String].self, from: data) {
         languageData = json
-        print("Loaded language data for \(language): \(json)")
       } else {
         print("Failed to decode language file: \(filePath)")
       }
