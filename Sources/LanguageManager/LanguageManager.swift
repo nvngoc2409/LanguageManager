@@ -12,13 +12,25 @@ public class LanguageManager: ObservableObject {
     }
 
     public func loadLanguage(_ language: String) {
-        let fileName = language == "th" ? "th.json" : "en.json"
-        if let url = Bundle.module.url(forResource: fileName, withExtension: ""),
-           let data = try? Data(contentsOf: url) {
-            if let json = try? JSONDecoder().decode([String: String].self, from: data) {
-                languageData = json
-            }
+      let filePath = "languages/\(language)/lang.json"
+
+      guard let resourcePath = Bundle.module.resourcePath,
+            let fullPath = URL(string: resourcePath)?.appendingPathComponent(filePath).path else {
+        print("Resource path not found")
+        return
+      }
+
+      do {
+        let data = try Data(contentsOf: URL(fileURLWithPath: fullPath))
+        if let json = try? JSONDecoder().decode([String: String].self, from: data) {
+          languageData = json
+          print("Loaded language data for \(language): \(json)")
+        } else {
+          print("Failed to decode language file: \(filePath)")
         }
+      } catch {
+        print("Error loading language file: \(error.localizedDescription)")
+      }
     }
 
     public func localizedString(forKey key: String) -> String {

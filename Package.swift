@@ -15,8 +15,7 @@ let package = Package(
     .target(
       name: "LanguageManager",
       resources: [
-        .process("languages/en_US"),
-        .process("languages/th_TH")
+        .copy("languages")
       ]
     ),
   ]
